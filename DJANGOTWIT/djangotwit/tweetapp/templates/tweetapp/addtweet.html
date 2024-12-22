@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container" style="width: 100%; max-width: 800px; margin: auto; padding: 20px;">
+    <form action="" method="POST" class="tweet-form">
+        {% csrf_token %}
+        
+        <div class="form-control" style="margin-bottom: 30px;">
+            <label for="message" style="font-size: 18px; font-weight: bold; color: #333; text-align: center; display: block; margin-bottom: 10px;">Yeni Gönderi</label>
+            <div>
+                <textarea id="message" name="message" rows="6" placeholder="Mesajınızı buraya yazın..." style="width: 100%; padding: 15px; font-size: 18px; border-radius: 5px; border: 1px solid #ccc; resize: none;"></textarea>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" style="background-color: #007bff; color: white; padding: 12px 24px; font-size: 18px; border-radius: 5px; border: none; cursor: pointer;">
+                Gönder
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

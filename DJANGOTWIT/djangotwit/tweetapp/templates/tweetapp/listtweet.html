@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal Medya Anasayfa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+</head>
+<body>
+
+
+<div class="container" style="width: 100%; max-width: 800px; margin: auto; padding: 20px; padding-top: 100px;">
+   <!--Gönderilerin sayfada çıkmasını istediğimiz için for loop'u içine tokenlarla birlikte koyduk. -->
+    {% for tweet in tweets %}
+        <div class="card" style="margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <div class="card-header" style="background-color: #103da0; color: white; padding: 15px; font-size: 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center;">
+                    <i class="fa-solid fa-user" style="color: #fffbfb; padding-right: 10px;"></i>
+                    {{ tweet.username }}
+                </div>
+                <div style="font-size: 14px; color: #f5f5f5; text-align: right;">
+                    {{ tweet.timestamp|date:"d M Y, H:i" }} <!-- Gönderinin atıldığı tarih ve saat -->
+                </div>
+            </div>
+            <div class="card-body" style="padding: 20px; font-size: 17px; line-height: 1.6; color: #555; font-weight: bold;">
+                <p class="card-text">{{ tweet.message }}</p>
+            </div>
+            <div class="" style="padding: 10px; background-color: white; text-align: right;">
+                {% if tweet.username == user %}
+                    <a href="{% url 'tweetapp:deletetweet' id=tweet.id %}" class="btn btn-link" style="color: #C61E12; font-size: 22px; padding: 0; border: none; background: none;" onclick="return confirm('Bu gönderiyi silmek istediğinizden emin misiniz?');">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}
+
+
+#Mine1234567890kullaniciadi:mine
